@@ -1,0 +1,9 @@
+#!/bin/sh
+
+if [ x"$1" != x ]; then
+	vbaName="$1"
+else
+	vbaName=$(echo $PWD | sed 's/^.*\///g')
+fi
+
+find -type f | vim -c '%s/^\.\///g | let g:vimball_home = getcwd()' -c "exec '1,'.line('$').'MkVimball $vbaName'" -c "q!" - && echo "done!" && echo "Created $vbaName.vba"

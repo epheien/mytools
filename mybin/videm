@@ -1,0 +1,2 @@
+#!/bin/sh
+vim --servername vim -c "VidemOpen $1"

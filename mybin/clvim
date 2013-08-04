@@ -1,0 +1,15 @@
+#!/bin/sh
+
+SERVERNAME="CODELITE-""$1"
+shift
+
+SESSION="vimp.vim"
+VIMINFO="vimp.vi"
+
+server=$(vim --serverlist | grep -e "\<$SERVERNAME\>")
+
+if [ -f "$SESSION" -a -f "$VIMINFO" ]; then
+	gvim --servername "$SERVERNAME" -S "$SESSION" -c "rviminfo $VIMINFO" "$@"
+else
+	gvim --servername "$SERVERNAME" "$@"
+fi

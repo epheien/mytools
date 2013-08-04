@@ -1,0 +1,25 @@
+#!/bin/bash
+#export PS4="+++++ ${LINENO}: ${FUNCNAME[0]}: "
+#set -x
+if [ "$UID" -ne 0 ]; then
+	sudo "$0" "$@"
+	exit $?
+fi
+
+if [ "$1" != install -a "$1" != upgrade -a "$1" != dist-upgrade ]; then
+	apt-get "$@"
+	exit $?
+fi
+
+apt-get --print-uris "$@" || exit 1
+
+packlist=$(apt-get --print-uris -y "$@" | grep http)
+
+if [ -z "$packlist" ]; then
+	apt-get -y "$@"
+	exit $?
+fi
+
+echo "$packlist" | awk '{print $1}' | xargs -n 1 axel -a -n 5 -o /var/cache/apt/archives
+apt-get -y "$@"
+

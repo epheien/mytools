@@ -1,0 +1,6 @@
+#!/bin/sh
+if [ x"$1" != x ]; then
+	find "$1" -depth -empty -type d -exec rmdir -v {} \;
+else
+	find . -depth -empty -type d -exec rmdir -v {} \;
+fi
