@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # 自动创建 .deb 的脚本 2.0
+# 2015-07-31	2.1		# fakeroot
 # 2010-10-31	2.0
 # 2010-08-12	1.0
 #
@@ -347,7 +348,7 @@ fi
 
 Installed_Size=$(du -s --exclude=DEBIAN "./$temp_dir" | awk '{print $1}')
 write_control > "./$temp_dir/DEBIAN/control"
-dpkg-deb -b "./$temp_dir" "${Package}_${Version}_${Architecture}.deb" || cleanup
+fakeroot dpkg-deb -b "./$temp_dir" "${Package}_${Version}_${Architecture}.deb" || cleanup
 
 finish
 cleanup 0
