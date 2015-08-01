@@ -1,0 +1,4 @@
+#!/bin/bash
+
+/usr/bin/gvimdiff -c 'set columns=180' -c 'wincmd =' -c 'wincmd l' "$@"
+
