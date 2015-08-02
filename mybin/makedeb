@@ -233,7 +233,7 @@ finish()
     makedeb finish !!!
 
 ========================================
-    ${Package}_${Version}_${Architecture}.deb"
+    ${Package}_${Version}_${Architecture}.deb
 ========================================
 EOF
 }
