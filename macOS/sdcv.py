@@ -7,7 +7,7 @@ import json
 
 def main(argv):
     word = argv[1]
-    p = subprocess.Popen(['/usr/local/bin/sdcv', '-nj', word],
+    p = subprocess.Popen(['/usr/bin/env', 'sdcv', '-nj', word],
                          stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     out, err = p.communicate()
 
